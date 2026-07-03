@@ -1,0 +1,11 @@
+# Build
+vm
+*.o
+obj/
+!obj/EXERCISES.md
+
+# Editor
+*.swp
+*.swo
+*~
+.DS_Store

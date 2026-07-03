@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="650" viewBox="0 0 900 650" font-family="monospace">
+  <defs>
+    <style>
+      .box { fill: #1e1e2e; stroke: #c0caf5; stroke-width: 2; rx: 8; ry: 8; }
+      .arrow { fill: none; stroke: #7aa2f7; stroke-width: 2; marker-end: url(#arrowhead); }
+      .arrow-dash { fill: none; stroke: #9ece6a; stroke-width: 2; stroke-dasharray: 5,5; marker-end: url(#arrowhead-green); }
+      .title { fill: #c0caf5; font-size: 20; font-weight: bold; }
+      .label { fill: #a9b1d6; font-size: 13; }
+      .label-small { fill: #565f89; font-size: 11; }
+      .highlight { fill: #e0af68; font-size: 13; font-weight: bold; }
+      .code { fill: #9ece6a; font-size: 13; }
+      .data { fill: #7dcfff; font-size: 13; }
+      .addr { fill: #bb9af7; font-size: 12; }
+    </style>
+    <marker id="arrowhead" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <polygon points="0,0 10,5 0,10" fill="#7aa2f7"/>
+    </marker>
+    <marker id="arrowhead-green" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <polygon points="0,0 10,5 0,10" fill="#9ece6a"/>
+    </marker>
+  </defs>
+
+  <rect width="900" height="650" fill="#14141f" rx="12"/>
+
+  <!-- Title -->
+  <text x="450" y="40" text-anchor="middle" class="title">byteVM — Arquitectura</text>
+
+  <!-- Source code -->
+  <rect x="50" y="65" width="240" height="90" class="box"/>
+  <text x="170" y="90" text-anchor="middle" class="label">Código Fuente</text>
+  <text x="170" y="110" text-anchor="middle" class="code">push 42</text>
+  <text x="170" y="126" text-anchor="middle" class="code">print</text>
+  <text x="170" y="142" text-anchor="middle" class="code">halt</text>
+
+  <!-- Assembler -->
+  <rect x="390" y="65" width="200" height="90" class="box"/>
+  <text x="490" y="90" text-anchor="middle" class="label">Ensamblador</text>
+  <text x="490" y="115" text-anchor="middle" class="label-small">asm → bytecode</text>
+  <text x="490" y="135" text-anchor="middle" class="label-small">1ª pasada: etiquetas</text>
+  <text x="490" y="150" text-anchor="middle" class="label-small">2ª pasada: emitir</text>
+
+  <!-- Bytecode -->
+  <rect x="690" y="65" width="180" height="90" class="box"/>
+  <text x="780" y="90" text-anchor="middle" class="label">Bytecode</text>
+  <text x="780" y="110" text-anchor="middle" class="data">01 2A 00 00 00</text>
+  <text x="780" y="126" text-anchor="middle" class="data">14</text>
+  <text x="780" y="142" text-anchor="middle" class="data">00</text>
+
+  <!-- Arrows -->
+  <line x1="290" y1="110" x2="380" y2="110" class="arrow"/>
+  <line x1="590" y1="110" x2="680" y2="110" class="arrow"/>
+
+  <!-- VM Box -->
+  <rect x="50" y="210" width="820" height="400" class="box"/>
+  <text x="460" y="240" text-anchor="middle" class="highlight">Máquina Virtual (VM)</text>
+
+  <!-- IP -->
+  <rect x="100" y="270" width="180" height="55" class="box" stroke="#e0af68"/>
+  <text x="190" y="293" text-anchor="middle" class="label">IP (Instruction Pointer)</text>
+  <text x="190" y="312" text-anchor="middle" class="addr">→ apunta al bytecode</text>
+
+  <!-- Stack -->
+  <rect x="100" y="350" width="180" height="180" class="box"/>
+  <text x="190" y="375" text-anchor="middle" class="label">Stack (pila)</text>
+  <text x="190" y="400" text-anchor="middle" class="label-small">push / pop</text>
+  <line x1="110" y1="415" x2="270" y2="415" stroke="#565f89"/>
+  <text x="190" y="435" text-anchor="middle" class="data">[sp] → 42</text>
+  <text x="190" y="455" text-anchor="middle" class="data">[sp-1] → 10</text>
+  <text x="190" y="475" text-anchor="middle" class="data">...</text>
+  <text x="190" y="500" text-anchor="middle" class="label-small">push: sp++, pop: sp--</text>
+  <text x="190" y="518" text-anchor="middle" class="label-small">max 1024</text>
+
+  <!-- Locals -->
+  <rect x="350" y="270" width="220" height="150" class="box"/>
+  <text x="460" y="295" text-anchor="middle" class="label">Locales</text>
+  <text x="460" y="315" text-anchor="middle" class="label-small">load/store</text>
+  <line x1="360" y1="330" x2="560" y2="330" stroke="#565f89"/>
+  <text x="460" y="350" text-anchor="middle" class="data">[0] = 120</text>
+  <text x="460" y="370" text-anchor="middle" class="data">[1] = 5</text>
+  <text x="460" y="390" text-anchor="middle" class="data">...</text>
+  <text x="460" y="410" text-anchor="middle" class="label-small">max 256</text>
+
+  <!-- Call Stack -->
+  <rect x="350" y="440" width="220" height="130" class="box"/>
+  <text x="460" y="465" text-anchor="middle" class="label">Call Stack</text>
+  <text x="460" y="485" text-anchor="middle" class="label-small">call / ret</text>
+  <line x1="360" y1="500" x2="560" y2="500" stroke="#565f89"/>
+  <text x="460" y="520" text-anchor="middle" class="data">[fp-1] → dir ret</text>
+  <text x="460" y="540" text-anchor="middle" class="data">[fp-2] → dir ret</text>
+  <text x="460" y="558" text-anchor="middle" class="label-small">max 128 niveles</text>
+
+  <!-- Decode/Execute -->
+  <rect x="640" y="270" width="190" height="130" class="box" stroke="#9ece6a"/>
+  <text x="735" y="295" text-anchor="middle" class="label">Ciclo Fetch-Decode-Exec</text>
+  <text x="735" y="320" text-anchor="middle" class="code">1. Leer opcode (ip++)</text>
+  <text x="735" y="340" text-anchor="middle" class="code">2. Decodificar switch</text>
+  <text x="735" y="360" text-anchor="middle" class="code">3. Ejecutar</text>
+  <text x="735" y="380" text-anchor="middle" class="code">4. Repetir</text>
+
+  <!-- Arrow from Bytecode to IP -->
+  <line x1="780" y1="155" x2="460" y2="240" class="arrow-dash"/>
+  <line x1="190" y1="325" x2="190" y2="340" class="arrow"/>
+  <line x1="460" y1="420" x2="460" y2="430" class="arrow"/>
+
+  <!-- Output -->
+  <rect x="640" y="430" width="190" height="80" class="box"/>
+  <text x="735" y="455" text-anchor="middle" class="label">Salida</text>
+  <text x="735" y="478" text-anchor="middle" class="code">print → stdout</text>
+  <text x="735" y="498" text-anchor="middle" class="code">prc → putchar</text>
+
+  <line x1="735" y1="400" x2="735" y2="420" class="arrow"/>
+
+  <!-- Legend -->
+  <text x="80" y="635" class="label-small">.basm → ensamblador → bytecode → VM (stack-based)</text>
+</svg>

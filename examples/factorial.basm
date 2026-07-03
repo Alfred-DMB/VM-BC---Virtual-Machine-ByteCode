@@ -1,0 +1,27 @@
+# Factorial recursivo
+# Calcula 5! = 120
+push 1
+push 5
+call fact
+print
+push 10
+prc
+halt
+
+:fact
+store 0
+load 0
+push 1
+gt
+jz base
+load 0
+load 0
+push 1
+sub
+call fact
+mul
+ret
+
+:base
+push 1
+ret
