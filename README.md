@@ -5,9 +5,7 @@ Built because I wanted to understand how virtual machines work from the inside.
 
 ## How it works
 
-```
-.basm  ──→  assembler  ──→  bytecode  ──→  VM
-```
+![byteVM architecture](diagrama.svg)
 
 The assembler works in two passes:
 1. Scans labels and calculates addresses
